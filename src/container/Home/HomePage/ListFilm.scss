@@ -1,0 +1,17 @@
+.slick-slide {
+    max-width: 290px !important;
+}
+.homepage-menu{
+    position: relative;
+}
+.homepage-icon{
+    position: absolute;
+    font-size: 30px;
+    top: -10px;
+    right: 25px;
+    z-index: 10000;
+    cursor: pointer;
+    &:hover{
+        opacity: 0.6;
+    }
+}

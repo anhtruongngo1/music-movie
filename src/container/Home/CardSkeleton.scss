@@ -1,0 +1,12 @@
+.card-skeleton{
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 53px);
+    padding: 2.5rem;
+}
+.left-col{
+    margin-right: 1rem;
+}
+.right-col {
+    flex: 1;
+}
