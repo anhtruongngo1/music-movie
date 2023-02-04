@@ -1,3 +1,4 @@
+
 .wrapper{
     color: #ffff;
     background-color: #181A23;
@@ -82,4 +83,12 @@
     width: 2.5rem;
     cursor: pointer;
     display: none;
+}
+
+@media(max-width: 768px)  { 
+
+    .container-box{
+        display: grid;
+    }
+
 }

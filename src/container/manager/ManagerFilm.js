@@ -8,10 +8,13 @@ import { AiOutlineEdit } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import ModalEditFilm from "./Modal/ModalEditFilm"
 import { useSelector } from 'react-redux';
-import Pagination from "./table/Pagination"
+import Pagination from "./table/Pagination" ;
+import Loading from "../auth/Loading"
+
 
 function ManagerFilm() {
   const [dataFilm, setDataFilm] = useState([])
+  const [loading , setLoading] = useState(true)
   const [isShowModal, setisShowModal] = useState(false)
   const [isShowModalEdit, setisShowModalEdit] = useState(false)
   const [isDataSend, setDataSend] = useState([])
@@ -26,6 +29,7 @@ function ManagerFilm() {
         setDataFilm(
           data.data
         )
+        setLoading(false)
       }
     })
 
@@ -72,6 +76,9 @@ function ManagerFilm() {
   }
 
   return (
+    <>
+          {loading && <Loading />}
+
     <div className="manager-film-body ">
           <div className="manager-film-icons">
           <IoMdAddCircle
@@ -151,6 +158,7 @@ function ManagerFilm() {
       />
 
     </div>
+    </>
   );
 }
 

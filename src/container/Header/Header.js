@@ -10,6 +10,7 @@ import SearchFilm from "../manager/search/SearchFilm" ;
 import {AiOutlineMenu} from "react-icons/ai" 
 import HeaderMenu from './HeaderMenu';
 import {AiFillCloseCircle} from "react-icons/ai" ;
+import Image from "../Image"
 
 
 function Header() {
@@ -49,7 +50,7 @@ function Header() {
                         onMouseLeave={() => setShowInfor(false)}
                         className="header-list-item-logout">
                         {userInfo && userInfo.image ? 
-                            <img src={userInfo.image}  alt="" /> : 'null'
+                            <img src={userInfo.image}  alt="" /> : <Image />
                         }
                         {isShowInfor && <HeaderInfor />}
                         

@@ -8,6 +8,7 @@ import ModalUser from './Modal/ModalUser';
 import ModalEdit from "./Modal/ModalEdit"
 import { useSelector } from 'react-redux';
 import {useNavigate} from "react-router-dom"
+import Loading from "../auth/Loading"
 
 function ManagerUser() {
   const [dataUser, setdataUser] = useState([])
@@ -17,6 +18,7 @@ function ManagerUser() {
   const navigate = useNavigate()
   const accessToken = useSelector((state) => state.user.accessToken)
   const userInfo = useSelector((state) => state.user.userInfor)
+  const [loading , setLoading] = useState(true)
   useEffect(() => {
     if (!userInfo){
       navigate("/login")
@@ -29,6 +31,7 @@ function ManagerUser() {
         setdataUser(
           data.data 
         )
+        setLoading(false)
       }
     })
 
@@ -71,6 +74,8 @@ function ManagerUser() {
 
   return (
     <>
+      {loading && <Loading />}
+
       <div className="manager-user-body">
           <div className="manager-user-icons">
           <IoMdAddCircle
