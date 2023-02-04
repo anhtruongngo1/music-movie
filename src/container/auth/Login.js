@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaUser, FaLock } from "react-icons/fa";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import {AiOutlineLoading3Quarters} from "react-icons/ai"
 import Header from "../Header/Header";
 import "../auth/Login.scss";
 import ModalForgot from './ModalForgot';
@@ -14,6 +15,7 @@ import { IconFace, IconGoogle } from '../Icons/Icons';
 
 function Login() {
     const [userName, setUsername] = useState('')
+    const [loading , setLoading] = useState(false)
     const [password , setpassword] = useState('')
     const [isShowPassword, setisShowPassword] = useState(false)
     const [ckeckValue, setcheckValue] = useState(true)
@@ -38,13 +40,16 @@ function Login() {
         if (!password) {
             setcheckValue(false);
         }
+
         if (userName && password) {
             try {
+                setLoading(true)
                 let res = await handleLogin2(userName, password)
               if (res && res.errCode === 0) {
                 const userInfor = {
                   userInfor: res.user
                 }
+                setLoading(false)
                 const accessToken = { accessToken: res.accessToken}
                 dispatch(saveInforUser(userInfor))
                 dispatch(saveAccessToken(accessToken))   
@@ -123,7 +128,8 @@ function Login() {
 
                   </div>
                   <div className="login-forgot">
-                  <span className="login-signup">signup</span>
+                  <span onClick={()=> navigate("/register")}
+                  className="login-signup">signup</span>
                     <span onClick={()=>handleModalForgot()}
                     className="login-forgot-link">forgot password</span>
                   </div>
@@ -133,7 +139,7 @@ function Login() {
                     onClick={() => handleLogin()}
                     className="btn-login"
                   >
-                    SIGN IN
+                    SIGN IN   {loading && <AiOutlineLoading3Quarters className='loading' />}
                   {notify && notify.length > 0 && <span
                    className="btn-messes"
                   >{notify}</span>}

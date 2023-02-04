@@ -82,6 +82,21 @@
                     margin-bottom: 6px;
                     cursor: pointer;
                     position: relative;
+                    .loading{
+                        color: blue;
+                        position: absolute;
+                        bottom: 5px;
+                        right: 30px;
+                        animation: spinner 1s linear infinite;
+                    }
+                    @keyframes spinner {
+                        from{
+                            transform:translateY(-50%) rotate(0);
+                        }
+                        to {
+                            transform:translateY(-50%) rotate(360deg);
+                        }
+                    }
                     .register-notify{
                         position: absolute;
                         color: red;
@@ -196,6 +211,19 @@
                         margin-top: 10px;
                         cursor: pointer;
                         position: relative;
+                        .loading{
+                            color: blue;
+                            margin-top: 7px;
+                            animation: spinner 1s linear infinite;
+                        }
+                        @keyframes spinner {
+                            from{
+                                transform:translateY(-50%) rotate(0);
+                            }
+                            to {
+                                transform:translateY(-50%) rotate(360deg);
+                            }
+                        }
                         .register-notify{
                             position: absolute;
                             color: red;

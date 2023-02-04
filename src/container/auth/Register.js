@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../auth/Register.scss';
 import { FaUser, FaLock } from "react-icons/fa";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import {AiOutlineLoading3Quarters} from "react-icons/ai"
 import Header from "../Header/Header"
 import { useFormik } from 'formik';
 import * as yup from 'yup'; 
@@ -12,6 +13,7 @@ import { IconFace, IconGoogle } from '../Icons/Icons';
 function Register() {
     const navigate = useNavigate()
     const [isShowPassword, setIsShowPassword] = useState(false)
+    const [loading , setLoading] = useState(false)
     const [notify , setnotify] = useState('')
     const formik = useFormik({
         initialValues: {
@@ -131,7 +133,7 @@ function Register() {
                                 
                                 onClick={formik.handleSubmit}
                                 className="btn-register"
-                                >SIGN UP
+                                >SIGN UP {loading && <AiOutlineLoading3Quarters className='loading' />}
 
                             {notify && <p className='register-notify'>{notify}!</p> }
                                 </button>

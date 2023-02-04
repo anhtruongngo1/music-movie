@@ -79,6 +79,21 @@
                         cursor: pointer;
                         position: relative;
                         margin: 10px 0 20px;
+                        .loading{
+                            color: blue;
+                            position: absolute;
+                            bottom: 5px;
+                            right: 30px;
+                            animation: spinner 1s linear infinite;
+                        }
+                        @keyframes spinner {
+                            from{
+                                transform:translateY(-50%) rotate(0);
+                            }
+                            to {
+                                transform:translateY(-50%) rotate(360deg);
+                            }
+                        }
                         .btn-messes{
                             position: absolute;
                             left: 15px;
@@ -217,6 +232,19 @@
                         border-radius: 5px;
                         margin-top: 10px;
                         cursor: pointer;
+                        .loading{
+                            color: blue;
+                            margin-top: 7px;
+                            animation: spinner 1s linear infinite;
+                        }
+                        @keyframes spinner {
+                            from{
+                                transform:translateY(-50%) rotate(0);
+                            }
+                            to {
+                                transform:translateY(-50%) rotate(360deg);
+                            }
+                        }
                     }
                     .login-forgot{
                         color: #b689b0;
