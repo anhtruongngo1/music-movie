@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import CommonUtils from "../../commantUtils/CommonUtils" ;
 import {handleEditUser} from "../../service/service"
 import { useDispatch } from "react-redux" ;
-import {updateInforUser} from "../../../redux/userSlice"
+import {fetchUserDetails, updateInforUser} from "../../../redux/userSlice"
 function UserDetail() {
     const userInfo = useSelector((state) => state.user.userInfor)
     const [activeUser, setactiveUser] = useState(false)
@@ -66,7 +66,7 @@ function UserDetail() {
             // const userInfor = {
             //     userInfo : form
             // }
-            // dispatch(updateInforUser(userInfo))
+             dispatch(fetchUserDetails(userInfo.id))
         }
       }
       const handleEditPassword = () =>{

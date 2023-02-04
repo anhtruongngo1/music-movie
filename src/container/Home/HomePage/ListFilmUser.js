@@ -10,39 +10,42 @@ import {AiOutlineCloseCircle} from "react-icons/ai"
 import { fetchUser, handleCart } from '../../../redux/userSlice';
 import CardSkeletonItem from "../CardSkeletonItem"
 
-
+  
 function ListFilmUser() {
 
   const navigate = useNavigate()
   const userInfo = useSelector((state) => state.user.userInfor)
-  const dataCart = useSelector((state) => state.user.CartFilm)
+  let dataCart = []
+  const [dataFilm , setdataCart] = useState([])
 
   const [loading , setLoading] = useState(true)
 
   const dispatch = useDispatch()
 
 
+  dataCart = useSelector((state) => state.user.CartFilm)
 
   useEffect(() => {
-    dispatch(fetchUser())
+    dispatch(fetchUser(userInfo.id))
     setLoading(false)
- 
+   
   }, [])
   useEffect(()=>{
-
+    
+ 
   },[dataCart])
+console.log('checll' , dataCart);
 
 
 
 
-
-  const ListDataCart =   dataCart.length < 5 ? dataCart.length : 5
+  const ListdataCart = dataCart && dataCart.length < 5 ? dataCart.length : 5
 
   let settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: ListDataCart ,
+    slidesToShow: ListdataCart ,
     slidesToScroll: 1,
 
 
@@ -58,7 +61,7 @@ function ListFilmUser() {
       idUser : userInfo.id
      })
      if(res && res.errCode ===0){
-        dispatch(fetchUser())
+        dispatch(fetchUser(userInfo.id))
      }
   }
 
@@ -77,7 +80,7 @@ function ListFilmUser() {
          dataCart.map((item, i) => (
            <div 
              key={i} className="homepage-menu">
-             <img src={item.film.image} alt="" onClick={() => handleDetailFilm(item.id)} />
+             <img src={item.Film.image} alt="" onClick={() => handleDetailFilm(item.id)} />
              <div className="homepage-icon">
               <AiOutlineCloseCircle onClick={()=>handleDeleteCart(item.id)} />
 

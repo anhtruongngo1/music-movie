@@ -1,20 +1,34 @@
 import { createSlice  , createAsyncThunk} from '@reduxjs/toolkit'
-import { deleteToCart, getToCart } from '../container/service/userService' ;
+import { deleteToCart, getToCart, getUserDetail } from '../container/service/userService' ;
 import axios from 'axios';
 
 const initialState = {
   userInfor: null,
   accessToken: '',
   loading : false ,
-  CartFilm : []
+  CartFilm :[]
 }
 
-export const fetchUser = createAsyncThunk('users/fetchByIdStatus', async(arg ,{
+export const fetchUser = createAsyncThunk('users/fetchByIdStatus', async(id ,{
   rejectWithValue
 })=>{
 
     try {
-     const res =  await getToCart()
+     const res =  await getToCart(id)
+     return res.data ;
+      
+    } catch (error) {
+      rejectWithValue(error.response.data)
+      
+    }
+
+})
+export const fetchUserDetails = createAsyncThunk('users/fetchDetailsUser', async(id ,{
+  rejectWithValue
+})=>{
+
+    try {
+     const res =  await getUserDetail(id)
      return res.data ;
       
     } catch (error) {
@@ -61,6 +75,19 @@ export const userSlice = createSlice({
 
     },
     [fetchUser.rejected] : (state , {payload}) => {
+      state.loading =  false ;
+
+    },
+    [fetchUserDetails.pending] : (state , {payload}) => {
+      state.loading =  true ;
+
+    },
+    [fetchUserDetails.fulfilled] : (state , {payload}) => {
+      state.loading =  false ;
+      state.userInfor = payload
+
+    },
+    [fetchUserDetails.rejected] : (state , {payload}) => {
       state.loading =  false ;
 
     }

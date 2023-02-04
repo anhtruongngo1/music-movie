@@ -12,6 +12,7 @@ import {postToCart} from "../../service/userService" ;
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUser } from '../../../redux/userSlice';
 import CardSkeleton from '../CardSkeleton';
+import { useNavigate } from 'react-router';
 
 
 
@@ -21,6 +22,7 @@ function HomePageCenter() {
     const [dataArr, setDataArr] = useState()
     const userInfo = useSelector((state) => state.user.userInfor)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     useEffect(() => {
           let res = getRandomfilm()
@@ -54,7 +56,7 @@ function HomePageCenter() {
 
         })
         if(res && res.errCode ===0){
-            dispatch(fetchUser())
+            dispatch(fetchUser(userInfo.id))
 
             alert("thêm vào danh sách thành công")
         }
@@ -65,8 +67,7 @@ function HomePageCenter() {
 
     }
     const handleViewFilm = () =>{
-        alert('làm chơi thôi film đâu mà xem mấy con tó')
-        console.log('checkk');
+        alert('phim còn đang quá trình phát triển')
     }
 
     return ( 
@@ -122,7 +123,7 @@ function HomePageCenter() {
                     </div>
                     <div className="overview-list-description">
                             {dataArr && dataArr.description ? dataArr.description : 'chưa có'}
-                            <span>
+                            <span onClick={() =>navigate(`/manager-detail-film/${dataArr.id}`)}>
                                 xem chi tiết
                                 <MdNavigateNext  className="overview-list-description-icon"/>
                             </span>
