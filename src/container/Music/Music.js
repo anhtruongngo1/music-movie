@@ -29,7 +29,7 @@ function Music() {
 
   const handleToggle = () => {
     setIsToggle(!isToggle);
-    console.log("checl toggle", isToggle);
+
   };
   const handleToggleRain = () =>{
     if(isToggleRain){

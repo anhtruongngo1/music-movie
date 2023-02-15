@@ -154,8 +154,12 @@ function Login() {
                   </div>
                 </div>
               </div>
+              <div className='admin'>
+            <span> admin : 123@gmail.com mk : 123456</span>
+          </div>
             </div>
 
+         
           </div>
         
             <ModalForgot 

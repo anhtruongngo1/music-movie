@@ -60,10 +60,8 @@ function HomePageCenter() {
 
             alert("thêm vào danh sách thành công")
         }
-        if(res.errCode === -1)
-        {
             alert("phim đã tồn tại trong danh sách")
-        }
+        
 
     }
     const handleViewFilm = () =>{
